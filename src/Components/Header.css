@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 20px;
+  background-color: #003049;
+  font-family: 'Lato', Arial, sans-serif;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.company-name {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.nav-links {
+  display: flex;
+  margin-left: 70px;
+}
+
+.nav-links a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.register-link {
+  margin-right: 15px;
+  text-decoration: none;
+  color: white;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+.login-button {
+  padding: 5px 13px;
+  border: 1px solid white;
+  background-color: white;
+  color: #003049;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #669bbc;
+}
