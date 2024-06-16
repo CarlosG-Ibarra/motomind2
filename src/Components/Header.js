@@ -1,19 +1,31 @@
 import React from 'react';
-import './Header.css'; 
+import { useNavigate } from 'react-router-dom';
+import './Header.css';
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate('/login?action=login'); // Navigate with action parameter for login
+  };
+
+  const handleRegisterClick = () => {
+    navigate('/login?action=register'); // Navigate with action parameter for register
+  };
+
   return (
     <header className="header">
       <div className="header-left">
         <h1 className="company-name">MotoMind</h1>
         <nav className="nav-links">
+          <a href="/">Inicio</a>
           <a href="/sober">Nosotros</a>
           <a href="/contact">Contact</a>
         </nav>
       </div>
       <div className="header-right">
-        <a href="/register" className="register-link">Registrate</a>
-        <button className="login-button">Log In</button>
+        <a href="/login?action=register" className="register-link" onClick={handleRegisterClick}>Registrate</a>
+        <button className="login-button" onClick={handleLoginClick}>Log In</button>
       </div>
     </header>
   );
