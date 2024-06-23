@@ -4,6 +4,20 @@
   display: none;
 }
 
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+.company-name-link {
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Inherits color from the h1 */
+}
+
+.company-name-link:hover {
+  text-decoration: underline; /* Optional: Adds underline on hover */
+}
+
 .home-content {
   display: flex;
   flex-direction: column;
@@ -18,8 +32,8 @@
   align-items: center;
   padding: 20px;
   padding-left: 41px;
-  width: 100%; /* Adjusted to take full width */
-  min-height: 100vh; /* Adjusted to take full height */
+  max-width: 100vw; /* Use viewport width */
+  min-height: 85vh; /* Adjusted to take full height */
   overflow: hidden;
 }
 
@@ -27,8 +41,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw; /* Use viewport width */
+  height: 100vh; /* Use viewport height */
   object-fit: cover;
   z-index: -1;
 }
@@ -60,7 +74,8 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 70%; /* Takes 70% of the available width */
-  z-index: 1;
+  z-index: 1; 
+
 }
 
 .slogan p {
@@ -101,4 +116,20 @@
   }
   
   /* Add more specific adjustments as needed */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: .5;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 4s forwards;
 }

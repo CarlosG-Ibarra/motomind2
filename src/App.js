@@ -6,6 +6,7 @@ import Footer from './Components/Footer';
 import Login from './Components/Login'; // Import the Login component
 import './App.css';
 import Contact from './Components/Contact';
+import About from './Components/About';
 
 const App = () => {
   return (
@@ -27,7 +28,7 @@ const Content = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
-        {/* Add other routes as needed */}
+        <Route path="/about" element={<About />} />
       </Routes>
       {!isLoginRoute && <Footer />}
     </div>

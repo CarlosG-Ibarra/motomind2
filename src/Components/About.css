@@ -1,0 +1,249 @@
+/* About.css */
+
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
+/* Define colors */
+:root {
+  --primary-color: #003049;
+  --secondary-color: #669bbc;
+  --text-color: #333;
+  --text-color-light: #666;
+  --bg-color: white;
+}
+
+/* Global styles */
+body {
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* About section */
+.about-us {
+  padding: 50px 0;
+  background-color: var(--bg-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.about-content,
+.mission-content,
+.values-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-text,
+.mission-text,
+.values-text {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.about-text h2,
+.mission-text h2,
+.values-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.about-text p,
+.mission-text p,
+.values-text ul {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-color-light);
+}
+
+.about-image,
+.mission-image,
+.values-image {
+  text-align: center;
+}
+
+.about-image img,
+.mission-image img,
+.values-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.mission-section,
+.values-section {
+  padding: 50px 0;
+  background-color: #fff;
+}
+
+.values-content {
+  flex-direction: row;
+}
+
+.mission-section h2,
+.values-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.mission-section p,
+.values-section ul {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-color-light);
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.values-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.values-section li {
+  margin-bottom: 10px;
+}
+
+.team-section {
+  margin-top: 50px;
+}
+
+.team-members {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  text-align: center;
+}
+
+.team-member {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.member-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.member-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.member-info p {
+  font-size: 1rem;
+  color: var(--text-color-light);
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Media Queries for responsiveness */
+@media (min-width: 768px) {
+  .about-content,
+  .mission-content,
+  .values-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .about-text,
+  .mission-text,
+  .values-text {
+    flex: 1;
+    padding-right: 20px;
+    text-align: left;
+  }
+
+  .mission-text {
+    padding-right: 20px;
+    padding-left: 0;
+  }
+
+  .values-text {
+    padding-right: 0;
+    padding-left: 20px;
+  }
+
+  .about-image,
+  .mission-image,
+  .values-image {
+    flex: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-text h2,
+  .mission-text h2,
+  .values-text h2 {
+    font-size: 2rem;
+  }
+
+  .about-text p,
+  .mission-text p,
+  .values-text ul {
+    font-size: 1rem;
+  }
+
+  .member-image img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .member-info h3 {
+    font-size: 1.25rem;
+  }
+
+  .member-info p {
+    font-size: 0.9rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 3s forwards;
+}

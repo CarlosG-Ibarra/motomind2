@@ -16,10 +16,12 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-left">
-        <h1 className="company-name">MotoMind</h1>
+        <a href="/" className="company-name-link">
+          <h1 className="company-name">MotoMind</h1>
+        </a>
         <nav className="nav-links">
           <a href="/">Inicio</a>
-          <a href="/sober">Nosotros</a>
+          <a href="/about">Nosotros</a>
           <a href="/contact">Contact</a>
         </nav>
       </div>

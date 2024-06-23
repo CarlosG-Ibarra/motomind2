@@ -1,7 +1,7 @@
 import React from "react";
 import "./Home.css";
 import motomindLogo from "./motomind_logo2.png";
-import backgroundVideo from "./backgroundvideo.mp4";
+import backgroundVideo from "./backgroundvideo2.mp4";
 
 const Home = () => {
   return (
@@ -11,10 +11,10 @@ const Home = () => {
           <source src={backgroundVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="logo">
+        <div className="logo fade-in">
           <img src={motomindLogo} alt="MotoMind Logo" />
         </div>
-        <div className="slogan">
+        <div className="slogan fade-in">
           <p>
             La conducción moderna es segura e inteligente. Manténte
             conectado, Manténte protegido
@@ -22,10 +22,10 @@ const Home = () => {
         </div>
       </div>
       <div className="box-section">
-        <div className="box-1">
+        <div className="box-1 fade-in">
           <p>This is box 1</p>
         </div>
-        <div className="box-2">
+        <div className="box-2 fade-in">
           <p>This is box 2</p>
         </div>
       </div>

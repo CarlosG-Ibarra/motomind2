@@ -23,7 +23,7 @@ const Login = () => {
 
   return (
     <div className="login-body">
-      <div className="container">
+      <div className="container-login">
         <div
           id="loginForm"
           className={`form-container ${showLoginForm ? "" : "hidden"}`}
@@ -36,7 +36,7 @@ const Login = () => {
             placeholder="Contraseña"
             required
           />
-          <button>Iniciar Sesión</button>
+          <button className="iniciar-button">Iniciar Sesión</button>
           <p>
             ¿No tienes una cuenta?{" "}
             <button className="link-button" onClick={toggleForms}>
@@ -61,7 +61,7 @@ const Login = () => {
             placeholder="Contraseña"
             required
           />
-          <button>Registro</button>
+          <button className="iniciar-button">Registro</button>
           <p>
             ¿Ya tienes una cuenta?{" "}
             <button className="link-button" onClick={toggleForms}>
