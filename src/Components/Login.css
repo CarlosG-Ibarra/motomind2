@@ -52,6 +52,7 @@ input {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 5px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -83,6 +84,12 @@ p {
   text-decoration: none;
 }
 
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+
 /* Media Queries for Responsiveness */
 
 @media (max-width: 768px) {
@@ -111,4 +118,20 @@ p {
   h2 {
       font-size: 1.5em;
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: .5;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 4s forwards;
 }

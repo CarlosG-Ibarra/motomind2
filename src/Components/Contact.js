@@ -1,6 +1,6 @@
 import React from "react";
 import "./Contact.css"; // Import CSS for styling
-import motocall from "./motocall.jpg";
+import motocall from "./Assets/motocall.jpg";
 
 const Contact = () => {
   return (
@@ -10,11 +10,11 @@ const Contact = () => {
         <p>Hello this is just a test </p>
       </div>
       <div className="info-section">
-        <div className="contactos">
+        <div className="contactos fade-in">
           <h3>Contactos</h3>
           {/* Add contact details here */}
         </div>
-        <div className="ubicacion">
+        <div className="ubicacion fade-in">
           <h3>Google Maps / Ubicación</h3>
           <iframe 
             className="google-maps"

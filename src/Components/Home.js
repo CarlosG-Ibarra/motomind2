@@ -1,7 +1,7 @@
 import React from "react";
 import "./Home.css";
 import motomindLogo from "./motomind_logo2.png";
-import backgroundVideo from "./backgroundvideo2.mp4";
+import backgroundVideo from "./backgroundvideo.mp4";
 
 const Home = () => {
   return (
