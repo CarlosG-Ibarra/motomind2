@@ -136,7 +136,7 @@ const Dashboard = () => {
           <Line ref={(el) => (chartRefs.current[0] = el)} data={humidityData} />
         </div>
         <div className="chart">
-          <h3>Incl</h3>
+          <h3>Inclinacion</h3>
           <Line ref={(el) => (chartRefs.current[1] = el)} data={inclData} />
         </div>
         <div className="chart">
