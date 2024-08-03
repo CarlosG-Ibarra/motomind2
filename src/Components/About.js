@@ -8,6 +8,7 @@ import Carlos from "./Assets/Carlos.jpg";
 import MissionImage from "./Assets/Mission.jpg";
 import ValuesImage from "./Assets/Values.jpg";
 
+// Lista de miembros del equipo con su información
 const teamMembers = [
   {
     id: 1,
@@ -41,11 +42,12 @@ const teamMembers = [
 
 const About = () => {
   useEffect(() => {
+    // useEffect se utiliza para aplicar el efecto de fade-in a los elementos con la clase "fade-in" cuando el componente se monta
     const elements = document.querySelectorAll(".fade-in");
     elements.forEach((el, index) => {
       setTimeout(() => {
         el.classList.add("visible");
-      }, index * 200); // Staggered fade-in effect
+      }, index * 200); // Efecto de fade-in escalonado
     });
   }, []);
 
@@ -124,6 +126,7 @@ const About = () => {
           <h2>Our Team</h2>
           <div className="team-members">
             {teamMembers.map((member) => (
+              // Renderización de cada miembro del equipo
               <div className="team-member fade-in" key={member.id}>
                 <div className="member-image">
                   <img src={member.image} alt={member.name} />
@@ -131,7 +134,6 @@ const About = () => {
                 <div className="member-info">
                   <h3>{member.name}</h3>
                   <p>{member.position}</p>
-                  <p>{member.bio}</p>
                 </div>
               </div>
             ))}

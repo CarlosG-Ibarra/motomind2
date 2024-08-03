@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "./Home.css";
-import motomindLogo from "./motomind_logo2.png";
+import "./Home.css"; // Importar archivo CSS
+import motomindLogo from "./motomind_logo2.png"; // Importar imágenes y videos
 import backgroundVideo from "./backgroundvideo.mp4";
-import carouselImage1 from "./BackgroundIndex.png"; // Add your carousel images
+import carouselImage1 from "./BackgroundIndex.png";
 import carouselImage2 from "./login-background.jpg";
 import carouselImage3 from "./moto2.jpg";
 import carouselImage4 from "./motomind_logo.png";
 import carouselImage5 from "./motomind_logo2.png";
 
 const Home = () => {
+  // Definir un arreglo de imágenes para el carrusel
   const images = [
     carouselImage1,
     carouselImage2,
@@ -16,21 +17,26 @@ const Home = () => {
     carouselImage4,
     carouselImage5,
   ];
+
+  // Estado para el índice de la imagen actual del carrusel
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Función para cambiar a la siguiente imagen del carrusel
   const nextImage = useCallback(() => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   }, [images.length]);
 
+  // Función para cambiar a la imagen anterior del carrusel
   const prevImage = () => {
     setCurrentImageIndex(
       (prevIndex) => (prevIndex - 1 + images.length) % images.length
     );
   };
 
+  // Efecto para cambiar la imagen del carrusel automáticamente cada 3 segundos
   useEffect(() => {
-    const interval = setInterval(nextImage, 3000); // Change image every 3 seconds
-    return () => clearInterval(interval); // Clear interval on component unmount
+    const interval = setInterval(nextImage, 3000);
+    return () => clearInterval(interval); // Limpiar el intervalo al desmontar el componente
   }, [nextImage]);
 
   return (

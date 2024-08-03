@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { ref, onValue } from 'firebase/database';
 import { database } from './firebaseConfig';
 import GaugeChart from 'react-gauge-chart';
-import './Dashboard.css'; // Import the CSS file
+import './Dashboard.css'; // Importar el archivo CSS
 
 const Dashboard = () => {
+  // Definir estados para cada sensor
   const [humidity, setHumidity] = useState(null);
   const [incl, setIncl] = useState(null);
   const [temperature, setTemperature] = useState(null);
@@ -13,6 +14,7 @@ const Dashboard = () => {
   const [longitude, setLongitude] = useState(null);
 
   useEffect(() => {
+    // Referencias a los datos en Firebase Realtime Database
     const humidityRef = ref(database, 'Casco/humedad');
     const inclRef = ref(database, 'Casco/incl');
     const temperatureRef = ref(database, 'Casco/temperatura');
@@ -20,6 +22,7 @@ const Dashboard = () => {
     const latRef = ref(database, 'Casco/lat');
     const lngRef = ref(database, 'Casco/lng');
 
+    // Suscripciones a los cambios en la base de datos
     const unsubscribeHumidity = onValue(humidityRef, (snapshot) => {
       setHumidity(snapshot.val());
     });
@@ -44,6 +47,7 @@ const Dashboard = () => {
       setLongitude(snapshot.val());
     });
 
+    // Limpiar suscripciones al desmontar el componente
     return () => {
       unsubscribeHumidity();
       unsubscribeIncl();
@@ -61,17 +65,17 @@ const Dashboard = () => {
         <div className="chart">
           <h3>Temperatura</h3>
           <div className="temperature-display">
-            {temperature !== null ? `${temperature} °C` : 'Loading...'}
+            {temperature !== null ? `${temperature} °C` : 'Loading...'} {/* Mostrar temperatura */}
           </div>
         </div>
         <div className="chart">
           <h3>Ubicación</h3>
           <div className="location-display">
             <div className="latitude">
-              {latitude !== null ? `Latitud: ${latitude}` : 'Loading...'}
+              {latitude !== null ? `Latitud: ${latitude}` : 'Loading...'} {/* Mostrar latitud */}
             </div>
             <div className="longitude">
-              {longitude !== null ? `Longitud: ${longitude}` : 'Loading...'}
+              {longitude !== null ? `Longitud: ${longitude}` : 'Loading...'} {/* Mostrar longitud */}
             </div>
           </div>
         </div>
@@ -84,19 +88,19 @@ const Dashboard = () => {
             textColor="#000000"
           />
           <div className="velocity-display">
-            {velocity !== null ? `${velocity} km/h` : 'Loading...'}
+            {velocity !== null ? `${velocity} km/h` : 'Loading...'} {/* Mostrar velocidad */}
           </div>
         </div>
         <div className="chart">
           <h3>Humedad</h3>
           <div className="humidity-display">
-            {humidity !== null ? `${humidity} %` : 'Loading...'}
+            {humidity !== null ? `${humidity} %` : 'Loading...'} {/* Mostrar humedad */}
           </div>
         </div>
         <div className="chart">
           <h3>Inclinación</h3>
           <div className="inclination-display">
-            <div className="needle" style={{ transform: `rotate(${incl}deg)` }} />
+            <div className="needle" style={{ transform: `rotate(${incl}deg)` }} /> {/* Mostrar inclinación */}
             <div className="inclination-value">
               {incl !== null ? `${incl}°` : 'Loading...'}
             </div>
