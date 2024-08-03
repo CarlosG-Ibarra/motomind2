@@ -1,70 +1,196 @@
-# Getting Started with Create React App
+MotoMind - Documentación de Funciones (React)
+Introducción
+Esta guía proporciona una visión detallada de las funcionalidades implementadas en los componentes React del proyecto MotoMind. Incluye descripciones completas, ejemplos de código y explicaciones para facilitar el desarrollo y la colaboración en el proyecto.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Contenidos
+Inicialización de Componentes
+Autenticación de Usuario
+Visualización de Datos en el Dashboard
+Interacción con la Interfaz
+Conclusión
 
-## Available Scripts
+Inicialización de Componentes
+Descripción
+La inicialización de componentes se encarga de configurar la interfaz de usuario cuando se carga el componente. Se incluyen efectos y configuraciones específicas para mejorar la experiencia del usuario.
 
-In the project directory, you can run:
+Funcionalidades
 
-### `npm start`
+Configura los elementos visuales.
+Aplica efectos de animación.
+Implementación
+Archivo: About.js
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+javascript
+Copy code
+import React, { useEffect } from "react";
+import "./About.css";
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+const About = () => {
+  useEffect(() => {
+    const elements = document.querySelectorAll(".fade-in");
+    elements.forEach((el, index) => {
+      setTimeout(() => {
+        el.classList.add("visible");
+      }, index * 200); // Efecto de desvanecimiento escalonado
+    });
+  }, []);
 
-### `npm test`
+  // Resto del componente...
+};
+Explicación
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+useEffect(): Ejecuta el efecto de desvanecimiento cuando el componente se monta.
+document.querySelectorAll(): Selecciona los elementos que deben tener el efecto de desvanecimiento.
+setTimeout(): Aplica la clase .visible de forma escalonada para el efecto visual.
+Autenticación de Usuario
+Descripción
+Permite a los usuarios iniciar sesión utilizando Firebase Authentication, gestionando el flujo de autenticación y redirigiendo al usuario tras el inicio de sesión exitoso.
 
-### `npm run build`
+Funcionalidades
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Inicia el flujo de autenticación con Google.
+Verifica las credenciales y redirige al usuario.
+Implementación
+Archivo: Header.js
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+javascript
+Copy code
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+const Header = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
-### `npm run eject`
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    return () => unsubscribe();
+  }, []);
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  const handleLogout = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      setUser(null);
+      navigate('/'); 
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  // Resto del componente...
+};
+Explicación
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+getAuth(): Obtiene la instancia de autenticación de Firebase.
+onAuthStateChanged(): Escucha los cambios en el estado de autenticación.
+signOut(): Cierra la sesión del usuario.
+Visualización de Datos en el Dashboard
+Descripción
+Permite visualizar en tiempo real los datos del sensor del casco utilizando Firebase. Los datos se actualizan automáticamente en la interfaz de usuario.
 
-## Learn More
+Funcionalidades
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Solicita los datos de Firebase.
+Muestra los datos en componentes gráficos.
+Implementación
+Archivo: Dashboard.js
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+javascript
+Copy code
+import React, { useEffect, useState } from 'react';
+import { ref, onValue } from 'firebase/database';
+import { database } from './firebaseConfig';
+import GaugeChart from 'react-gauge-chart';
+import './Dashboard.css';
 
-### Code Splitting
+const Dashboard = () => {
+  const [humidity, setHumidity] = useState(null);
+  const [incl, setIncl] = useState(null);
+  const [temperature, setTemperature] = useState(null);
+  const [velocity, setVelocity] = useState(null);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  useEffect(() => {
+    const humidityRef = ref(database, 'Casco/humedad');
+    const inclRef = ref(database, 'Casco/incl');
+    const temperatureRef = ref(database, 'Casco/temperatura');
+    const velocityRef = ref(database, 'Casco/vel');
 
-### Analyzing the Bundle Size
+    const unsubscribeHumidity = onValue(humidityRef, (snapshot) => {
+      setHumidity(snapshot.val());
+    });
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    const unsubscribeIncl = onValue(inclRef, (snapshot) => {
+      setIncl(snapshot.val());
+    });
 
-### Making a Progressive Web App
+    const unsubscribeTemperature = onValue(temperatureRef, (snapshot) => {
+      setTemperature(snapshot.val());
+    });
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    const unsubscribeVelocity = onValue(velocityRef, (snapshot) => {
+      setVelocity(snapshot.val());
+    });
 
-### Advanced Configuration
+    return () => {
+      unsubscribeHumidity();
+      unsubscribeIncl();
+      unsubscribeTemperature();
+      unsubscribeVelocity();
+    };
+  }, []);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  // Resto del componente...
+};
+Explicación
 
-### Deployment
+`ref(database, 'Casco/'): Crea una referencia a los datos en Firebase.
+onValue(): Establece un oyente para recibir actualizaciones en tiempo real.
+🛠 Interacción con la Interfaz
+Descripción
+Gestiona la interacción del usuario con la interfaz, actualizando la visualización de datos y permitiendo ajustes en los componentes gráficos.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Funcionalidades
 
-### `npm run build` fails to minify
+Permite la interacción con botones.
+Actualiza la visualización en respuesta a eventos del usuario.
+Implementación
+Archivo: Home.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+javascript
+Copy code
+import React, { useState, useEffect, useCallback } from "react";
+import "./Home.css";
+
+const Home = () => {
+  const images = [/* Lista de imágenes */];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = useCallback(() => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  }, [images.length]);
+
+  useEffect(() => {
+    const interval = setInterval(nextImage, 3000); // Cambia la imagen cada 3 segundos
+    return () => clearInterval(interval);
+  }, [nextImage]);
+
+  return (
+    <div className="home-content">
+      {/* Resto del componente... */}
+    </div>
+  );
+};
+
+export default Home;
+Explicación
+
+useCallback(): Optimiza la función para cambiar la imagen.
+setInterval(): Cambia la imagen del carrusel cada 3 segundos.
+🏁 Conclusión
+Esta documentación proporciona una visión general de las principales funcionalidades de los componentes React en el proyecto MotoMind. Cada componente está diseñado para ofrecer una experiencia de usuario intuitiva y eficaz, aprovechando las capacidades de React y Firebase para un rendimiento óptimo.

@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  onAuthStateChanged,
 } from "firebase/auth";
 import "./Login.css";
-import { auth } from "./firebaseConfig"; // Import the Firebase configuration
-
-// Import icons (adjust paths based on your setup)
+import { auth } from "./firebaseConfig";
 import { FaUser } from "react-icons/fa";
 import { RiGoogleFill } from "react-icons/ri";
 
 const Login = () => {
-  const navigate = useNavigate(); // useNavigate hook for navigation
+  const navigate = useNavigate();
   const location = useLocation();
   const [showLoginForm, setShowLoginForm] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -30,16 +30,39 @@ const Login = () => {
     } else {
       setShowLoginForm(true);
     }
-  }, [location.search]);
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate("/");
+      }
+    });
+
+    return () => unsubscribe();
+  }, [location.search, navigate]);
 
   const toggleForms = () => {
     setShowLoginForm(!showLoginForm);
     setError("");
     setEmail("");
     setPassword("");
+    setPasswordError("");
+  };
+
+  const validatePassword = (password) => {
+    // Validate password complexity
+    if (password.length < 6) {
+      setPasswordError("La contraseña debe tener al menos 6 caracteres.");
+      return false;
+    }
+    // Add more complex validation rules here if needed
+    return true;
   };
 
   const handleLogin = async () => {
+    if (!validatePassword(password)) {
+      return;
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert("¡Inicio de sesión exitoso!");
@@ -50,6 +73,10 @@ const Login = () => {
   };
 
   const handleRegister = async () => {
+    if (!validatePassword(password)) {
+      return;
+    }
+
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       alert("¡Registro exitoso!");
@@ -64,8 +91,8 @@ const Login = () => {
   };
 
   const handleGoogleLogin = async () => {
-    const provider = new GoogleAuthProvider();
     try {
+      const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       alert("¡Inicio de sesión con Google exitoso!");
       navigate("/");
@@ -100,6 +127,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {passwordError && <p className="error">{passwordError}</p>}
             </div>
             <div className="button-container">
               <button className="iniciar-button" onClick={handleLogin}>
@@ -142,6 +170,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {passwordError && <p className="error">{passwordError}</p>}
             </div>
             <div className="button-container">
               <button className="iniciar-button" onClick={handleRegister}>
