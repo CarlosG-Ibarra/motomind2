@@ -1,61 +1,63 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importar hook de navegación
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'; // Importar funciones de autenticación de Firebase
-import './Header.css'; // Importar archivo CSS
+import { useNavigate, Link } from 'react-router-dom'; // Use Link from react-router-dom
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'; // Import Firebase Auth functions
+import './Header.css'; // Import CSS
 
 const Header = () => {
-  const navigate = useNavigate(); // Instanciar el hook de navegación
-  const [user, setUser] = useState(null); // Estado para el usuario actual
+  const navigate = useNavigate(); // Hook for navigation
+  const [user, setUser] = useState(null); // State for the current user
 
   useEffect(() => {
-    const auth = getAuth(); // Obtener instancia de autenticación de Firebase
+    const auth = getAuth(); // Get Firebase Auth instance
 
-    // Suscripción al cambio de estado de autenticación
+    // Subscribe to auth state changes
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user); // Actualizar estado del usuario
+      setUser(user); // Update user state
     });
 
-    return () => unsubscribe(); // Limpiar suscripción al desmontar el componente
+    return () => unsubscribe(); // Clean up subscription
   }, []);
 
-  // Manejador para redirigir a la página de inicio de sesión
-  const handleLoginClick = () => {
-    navigate('/login?action=login'); // Navegar a la ruta de inicio de sesión
+  // Handle login button click
+  const handleLoginClick = (e) => {
+    e.preventDefault(); // Prevent default link behavior
+    navigate('/login?action=login'); // Navigate to login page
   };
 
-  // Manejador para redirigir a la página de registro
-  const handleRegisterClick = () => {
-    navigate('/login?action=register'); // Navegar a la ruta de registro
+  // Handle register button click
+  const handleRegisterClick = (e) => {
+    e.preventDefault(); // Prevent default link behavior
+    navigate('/login?action=register'); // Navigate to register page
   };
 
-  // Manejador para cerrar sesión del usuario
+  // Handle logout
   const handleLogout = async () => {
-    const auth = getAuth(); // Obtener instancia de autenticación de Firebase
+    const auth = getAuth(); // Get Firebase Auth instance
 
     try {
-      await signOut(auth); // Cerrar sesión con Firebase
-      setUser(null); // Limpiar estado del usuario
-      navigate('/'); // Redirigir a la página de inicio
+      await signOut(auth); // Sign out with Firebase
+      setUser(null); // Clear user state
+      navigate('/'); // Redirect to home page
     } catch (error) {
-      console.error('Error signing out:', error); // Manejo de errores en caso de fallo al cerrar sesión
+      console.error('Error signing out:', error); // Handle errors
     }
   };
 
   return (
     <header className="header">
       <div className="header-left">
-        <a href="/" className="company-name-link">
+        <Link to="/" className="company-name-link">
           <h1 className="company-name">MotoMind</h1>
-        </a>
+        </Link>
         <nav className="nav-links">
-          <a href="/">Inicio</a>
-          <a href="/about">Nosotros</a>
-          <a href="/contact">Contacto</a>
-          {user && <a href="/dashboard">Dashboard</a>} {/* Enlace a Dashboard visible solo si el usuario está autenticado */}
+          <Link to="/">Inicio</Link>
+          <Link to="/about">Nosotros</Link>
+          <Link to="/contact">Contacto</Link>
+          {user && <Link to="/dashboard">Dashboard</Link>} {/* Link to Dashboard visible only if user is authenticated */}
         </nav>
       </div>
       <div className="header-right">
-        {user ? ( // Mostrar menú de usuario si hay sesión activa
+        {user ? ( // Show user menu if user is logged in
           <div className="user-dropdown">
             <button className="user-email">{user.email}</button>
             <div className="dropdown-content">
@@ -63,8 +65,8 @@ const Header = () => {
             </div>
           </div>
         ) : (
-          <> {/* Mostrar botón de inicio de sesión y enlace de registro si no hay sesión activa */}
-            <a href="/login?action=register" className="register-link" onClick={handleRegisterClick}>Regístrate</a>
+          <> {/* Show login and register buttons if no user is logged in */}
+            <Link to="/login?action=register" className="register-link" onClick={handleRegisterClick}>Regístrate</Link>
             <button className="login-button" onClick={handleLoginClick}>Iniciar sesión</button>
           </>
         )}

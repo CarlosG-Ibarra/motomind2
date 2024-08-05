@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
 ::-webkit-scrollbar {
   display: none;
@@ -7,7 +8,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif; /* Modern and clean font */
 }
 
 .company-name-link {
@@ -68,6 +69,7 @@ body, html {
   justify-content: center;
   align-items: center;
   text-align: center;
+  font-family: 'Montserrat', sans-serif; /* Modern font for slogan */
   font-size: 3vw; /* Responsive font size */
   font-weight: 700;
   color: white;
@@ -156,19 +158,68 @@ body, html {
 }
 
 .feature-box h3 {
+  font-family: 'Montserrat', sans-serif; /* Modern font for headings */
   font-size: 1.5rem;
   margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .feature-box p {
   color: #666;
   margin-bottom: 15px; /* Added margin bottom for better spacing */
+  font-family: 'Roboto', sans-serif; /* Modern font for paragraph text */
 }
 
 .feature-box i {
   font-size: 3rem;
   color: #007bff; /* Adjusted color for icons */
   margin-bottom: 10px;
+}
+
+.products-section {
+  padding: 60px 40px; /* Increased padding */
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.products-section h2 {
+  font-family: 'Montserrat', sans-serif; /* Modern font for section title */
+  font-size: 2.5rem; /* Increased font size */
+  margin-bottom: 30px; /* Increased margin for spacing */
+  font-weight: 700;
+  color: #333; /* Darker color for better readability */
+}
+
+.products-container {
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  gap: 20px; /* Adjust the space between items */
+}
+
+.product {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: calc(45% - 20px); /* Adjusted width with gap */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+  margin: 10px; /* Optional: add margin for spacing */
+  text-align: center; /* Center text within the product box */
+}
+
+.product h3 {
+  font-family: 'Montserrat', sans-serif; /* Modern font for product titles */
+  font-size: 1.75rem; /* Increased font size */
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.product p {
+  margin-bottom: 10px;
+  color: #333;
+  font-family: 'Roboto', sans-serif; /* Modern font for product descriptions */
 }
 
 @media (max-width: 768px) {
@@ -187,6 +238,15 @@ body, html {
   }
 
   .feature-box {
+    width: 80%;
+  }
+
+  .products-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product {
     width: 80%;
   }
 }

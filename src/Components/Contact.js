@@ -1,6 +1,8 @@
 import React from "react";
 import "./Contact.css"; // Import CSS for styling
 import motocall from "./Assets/motocall.jpg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 
 const Contact = () => {
   return (
@@ -12,7 +14,17 @@ const Contact = () => {
       <div className="info-section">
         <div className="contactos fade-in">
           <h3>Contactos</h3>
-          {/* Add contact details here */}
+          <ul>
+            <li>
+              <FontAwesomeIcon icon={faEnvelope} /> <strong>MotoMind@gmail.com</strong>
+            </li>
+            <li>
+              <FontAwesomeIcon icon={faPhone} /> <strong>614-111-2222</strong>
+            </li>
+            <li>
+              <strong>Rodolfo Yahir Fierro Solís</strong>
+            </li>
+          </ul>
         </div>
         <div className="ubicacion fade-in">
           <h3>Google Maps / Ubicación</h3>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./About.css";
-import Aboutus from "./Aboutus.jpg";
+import Aboutus from "./Assets/Aboutus.jpg";
 import Rodolfo from "./Assets/Rodolfo.jpg";
 import Joel from "./Assets/Joel.jpg";
 import Michelle from "./Assets/Michelle2.png";
@@ -56,13 +56,20 @@ const About = () => {
       <div className="container">
         <div className="about-content fade-in">
           <div className="about-text">
-            <h2>About Us</h2>
+            <h2>Sobre Nosotros</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              convallis libero libero.
+              MotoMind es una microempresa ubicada en Chihuahua, México dedicada
+              al desarrollo de cascos inteligentes para motociclistas. Nuestra
+              empresa está compuesta por un grupo de estudiantes talentosos
+              apasionados por la tecnología y la seguridad vial. A pesar de ser
+              una microempresa, nuestro equipo destaca por su creatividad y
+              compromiso con la innovación. Estamos enfocados en diseñar cascos
+              que no solo protejan, sino que también proporcionen información
+              crucial a conductor en tiempo real, mejorando así la seguridad y
+              comodidad en cada viaje.
             </p>
             <a href="/" className="btn">
-              Read More
+              Leer Mas
             </a>
           </div>
           <div className="about-image">
@@ -78,12 +85,12 @@ const About = () => {
               <img src={MissionImage} alt="Our Mission" />
             </div>
             <div className="mission-text">
-              <h2>Our Mission</h2>
+              <h2>Nuestra Mission</h2>
               <p>
-                Our mission is to create innovative solutions that empower
-                businesses to achieve their goals. We strive to deliver
-                high-quality products and services that exceed our clients'
-                expectations.
+                Ser la empresa líder en innovación tecnológica para la seguridad
+                de motociclistas, revolucionando el mercado de cascos
+                inteligentes y estableciendo nuevos estándares de seguridad y
+                comodidad a nivel global.
               </p>
             </div>
           </div>
@@ -94,24 +101,14 @@ const About = () => {
         <div className="container">
           <div className="values-content fade-in">
             <div className="values-text">
-              <h2>Our Values</h2>
+              <h2>Nuestra Vision</h2>
               <ul>
-                <li>
-                  Integrity: We uphold the highest standards of integrity in all
-                  our actions.
-                </li>
-                <li>
-                  Customer Commitment: We develop relationships that make a
-                  positive difference in our customers' lives.
-                </li>
-                <li>
-                  Quality: We provide outstanding products and unsurpassed service
-                  that deliver premium value to our customers.
-                </li>
-                <li>
-                  Teamwork: We work together, across boundaries, to meet the needs
-                  of our customers and to help the company win.
-                </li>
+                Desarrollar cascos inteligentes de alta calidad que integren
+                tecnología avanzada para mejorar la seguridad y la experiencia
+                de conducción de los motociclistas. Nos comprometemos a innovar
+                constantemente y a ofrecer soluciones que protejan y asistan a
+                los conductores, contribuyendo así a reducir accidentes y salvar
+                vidas.
               </ul>
             </div>
             <div className="values-image">

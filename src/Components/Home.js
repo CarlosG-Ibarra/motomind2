@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "./Home.css"; // Importar archivo CSS
-import motomindLogo from "./motomind_logo2.png"; // Importar imágenes y videos
-import backgroundVideo from "./backgroundvideo.mp4";
-import carouselImage1 from "./BackgroundIndex.png";
-import carouselImage2 from "./login-background.jpg";
-import carouselImage3 from "./moto2.jpg";
-import carouselImage4 from "./motomind_logo.png";
-import carouselImage5 from "./motomind_logo2.png";
+import "./Home.css"; // Import CSS file
+import motomindLogo from "./Assets/motomind_logo2.png"; // Import images and videos
+import backgroundVideo from "./Assets/backgroundvideo.mp4";
+import carouselImage1 from "./Assets/moto1.jpg";
+import carouselImage2 from "./Assets/moto2.jpg";
+import carouselImage3 from "./Assets/moto3.jpg";
+import carouselImage4 from "./Assets/moto4.jpg";
+import carouselImage5 from "./Assets/moto4.jpg";
 
 const Home = () => {
-  // Definir un arreglo de imágenes para el carrusel
+  // Define an array of images for the carousel
   const images = [
     carouselImage1,
     carouselImage2,
@@ -18,25 +18,25 @@ const Home = () => {
     carouselImage5,
   ];
 
-  // Estado para el índice de la imagen actual del carrusel
+  // State for the current image index of the carousel
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Función para cambiar a la siguiente imagen del carrusel
+  // Function to change to the next image in the carousel
   const nextImage = useCallback(() => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   }, [images.length]);
 
-  // Función para cambiar a la imagen anterior del carrusel
+  // Function to change to the previous image in the carousel
   const prevImage = () => {
     setCurrentImageIndex(
       (prevIndex) => (prevIndex - 1 + images.length) % images.length
     );
   };
 
-  // Efecto para cambiar la imagen del carrusel automáticamente cada 3 segundos
+  // Effect to change the carousel image automatically every 3 seconds
   useEffect(() => {
     const interval = setInterval(nextImage, 3000);
-    return () => clearInterval(interval); // Limpiar el intervalo al desmontar el componente
+    return () => clearInterval(interval); // Clear the interval when the component unmounts
   }, [nextImage]);
 
   return (
@@ -54,6 +54,22 @@ const Home = () => {
             La conducción moderna es segura e inteligente. Manténte conectado,
             Manténte protegido.
           </p>
+        </div>
+      </div>
+
+      <div className="products-section fade-in">
+        <h2>Productos</h2>
+        <div className="products-container">
+          <div className="product">
+            <h3>MotoMind L1</h3>
+            <p>Precio: $3,000</p>
+            <p>El MotoMind L1 ofrece protección avanzada con conectividad inteligente.</p>
+          </div>
+          <div className="product">
+            <h3>MotoMind L2</h3>
+            <p>Precio: $4,000</p>
+            <p>El MotoMind L2 incluye características mejoradas para una conducción más segura y conectada.</p>
+          </div>
         </div>
       </div>
 
@@ -123,6 +139,8 @@ const Home = () => {
           ›
         </button>
       </div>
+
+      
     </div>
   );
 };
