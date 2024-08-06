@@ -68,17 +68,7 @@ const Dashboard = () => {
             {temperature !== null ? `${temperature} °C` : 'Loading...'} {/* Mostrar temperatura */}
           </div>
         </div>
-        <div className="chart">
-          <h3>Ubicación</h3>
-          <div className="location-display">
-            <div className="latitude">
-              {latitude !== null ? `Latitud: ${latitude}` : 'Loading...'} {/* Mostrar latitud */}
-            </div>
-            <div className="longitude">
-              {longitude !== null ? `Longitud: ${longitude}` : 'Loading...'} {/* Mostrar longitud */}
-            </div>
-          </div>
-        </div>
+        
         <div className="chart">
           <h3>Velocidad</h3>
           <GaugeChart
