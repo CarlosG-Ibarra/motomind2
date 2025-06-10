@@ -1,0 +1,170 @@
+.productos-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.productos-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.productos-header h1 {
+  font-size: 2.5rem;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.productos-header p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.helmet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.helmet-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.helmet-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.helmet-image-container {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.helmet-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.helmet-card:hover .helmet-image {
+  transform: scale(1.05);
+}
+
+.price-tag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #e63946;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.helmet-info {
+  padding: 25px;
+}
+
+.helmet-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.helmet-description {
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.features-list h4 {
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.features-list ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 25px;
+}
+
+.features-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+}
+
+.features-list li:before {
+  content: "✓";
+  color: #4CAF50;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.helmet-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.buy-button {
+  flex: 1;
+  padding: 12px;
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.buy-button:hover {
+  background-color: #d62c3a;
+}
+
+.details-button {
+  flex: 1;
+  padding: 12px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.details-button:hover {
+  background-color: #222;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .helmet-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .productos-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .helmet-actions {
+    flex-direction: column;
+  }
+  
+  .helmet-image-container {
+    height: 200px;
+  }
+}

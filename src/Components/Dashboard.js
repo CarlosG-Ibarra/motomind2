@@ -1,61 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { ref, onValue } from 'firebase/database';
-import { database } from './firebaseConfig';
+import React, { useState, useEffect } from 'react';
 import GaugeChart from 'react-gauge-chart';
-import './Dashboard.css'; // Importar el archivo CSS
+import './Dashboard.css'; // Keep styling
 
 const Dashboard = () => {
-  // Definir estados para cada sensor
-  const [humidity, setHumidity] = useState(null);
-  const [incl, setIncl] = useState(null);
-  const [temperature, setTemperature] = useState(null);
-  const [velocity, setVelocity] = useState(null);
+  // Simulate data instead of using Firebase
+  const [humidity, setHumidity] = useState(45);
+  const [incl, setIncl] = useState(10);
+  const [temperature, setTemperature] = useState(22);
+  const [velocity, setVelocity] = useState(50);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
 
   useEffect(() => {
-    // Referencias a los datos en Firebase Realtime Database
-    const humidityRef = ref(database, 'Casco/humedad');
-    const inclRef = ref(database, 'Casco/incl');
-    const temperatureRef = ref(database, 'Casco/temperatura');
-    const velocityRef = ref(database, 'Casco/vel');
-    const latRef = ref(database, 'Casco/lat');
-    const lngRef = ref(database, 'Casco/lng');
+    // Simulate updating data if desired (optional)
+    const interval = setInterval(() => {
+      setHumidity((prev) => (prev + 1) % 100);
+      setIncl((prev) => (prev + 1) % 360);
+      setTemperature((prev) => prev + (Math.random() - 0.5));
+      setVelocity((prev) => (prev + Math.random() * 5) % 100);
+    }, 3000);
 
-    // Suscripciones a los cambios en la base de datos
-    const unsubscribeHumidity = onValue(humidityRef, (snapshot) => {
-      setHumidity(snapshot.val());
-    });
-
-    const unsubscribeIncl = onValue(inclRef, (snapshot) => {
-      setIncl(snapshot.val());
-    });
-
-    const unsubscribeTemperature = onValue(temperatureRef, (snapshot) => {
-      setTemperature(snapshot.val());
-    });
-
-    const unsubscribeVelocity = onValue(velocityRef, (snapshot) => {
-      setVelocity(snapshot.val());
-    });
-
-    const unsubscribeLat = onValue(latRef, (snapshot) => {
-      setLatitude(snapshot.val());
-    });
-
-    const unsubscribeLng = onValue(lngRef, (snapshot) => {
-      setLongitude(snapshot.val());
-    });
-
-    // Limpiar suscripciones al desmontar el componente
-    return () => {
-      unsubscribeHumidity();
-      unsubscribeIncl();
-      unsubscribeTemperature();
-      unsubscribeVelocity();
-      unsubscribeLat();
-      unsubscribeLng();
-    };
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -65,10 +30,10 @@ const Dashboard = () => {
         <div className="chart">
           <h3>Temperatura</h3>
           <div className="temperature-display">
-            {temperature !== null ? `${temperature} °C` : 'Loading...'} {/* Mostrar temperatura */}
+            {temperature !== null ? `${temperature.toFixed(1)} °C` : 'Loading...'}
           </div>
         </div>
-        
+
         <div className="chart">
           <h3>Velocidad</h3>
           <GaugeChart
@@ -78,19 +43,21 @@ const Dashboard = () => {
             textColor="#000000"
           />
           <div className="velocity-display">
-            {velocity !== null ? `${velocity} km/h` : 'Loading...'} {/* Mostrar velocidad */}
+            {velocity !== null ? `${velocity.toFixed(1)} km/h` : 'Loading...'}
           </div>
         </div>
+
         <div className="chart">
           <h3>Humedad</h3>
           <div className="humidity-display">
-            {humidity !== null ? `${humidity} %` : 'Loading...'} {/* Mostrar humedad */}
+            {humidity !== null ? `${humidity} %` : 'Loading...'}
           </div>
         </div>
+
         <div className="chart">
           <h3>Inclinación</h3>
           <div className="inclination-display">
-            <div className="needle" style={{ transform: `rotate(${incl}deg)` }} /> {/* Mostrar inclinación */}
+            <div className="needle" style={{ transform: `rotate(${incl}deg)` }} />
             <div className="inclination-value">
               {incl !== null ? `${incl}°` : 'Loading...'}
             </div>
