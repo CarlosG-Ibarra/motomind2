@@ -28,21 +28,7 @@ Este comando descargará e instalará automáticamente todos los paquetes necesa
 Para iniciar el servidor de desarrollo:
 bashnpm start
 La aplicación se abrirá automáticamente en tu navegador en http://localhost:3000
-📁 Estructura del Proyecto
-motomind/
-├── public/
-├── src/
-│   ├── Components/
-│   │   ├── CartContext.js
-│   │   ├── CascoL1.js
-│   │   ├── CascoL2.js
-│   │   ├── CascoPro.js
-│   │   ├── Productos.js
-│   │   └── ...
-│   ├── App.js
-│   └── index.js
-├── package.json
-└── README.md
+
 🛠️ Comandos Disponibles
 En el directorio del proyecto, puedes ejecutar:
 npm start
