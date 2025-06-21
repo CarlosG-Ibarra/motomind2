@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'; // Import Firebase Auth functions
 import { useCart } from './CartContext'; 
 import './Header.css';
 
 const Header = () => {
   const navigate = useNavigate();
   const { getCartItemCount } = useCart(); 
+  const [user, setUser] = useState(null); // State for the current user
 
-  const user = null; 
+  useEffect(() => {
+    const auth = getAuth(); // Get Firebase Auth instance
+    // Subscribe to auth state changes
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user); // Update user state
+    });
+    return () => unsubscribe(); // Clean up subscription
+  }, []);
 
   const handleLoginClick = (e) => {
     e.preventDefault();
@@ -20,8 +29,14 @@ const Header = () => {
   };
 
   const handleLogout = async () => {
-    console.log('Logout clicked');
-    navigate('/');
+    const auth = getAuth(); // Get Firebase Auth instance
+    try {
+      await signOut(auth); // Sign out with Firebase
+      setUser(null); // Clear user state
+      navigate('/'); // Redirect to home page
+    } catch (error) {
+      console.error('Error signing out:', error); // Handle errors
+    }
   };
 
   const handleCartClick = () => {
@@ -55,7 +70,7 @@ const Header = () => {
         </button>
         {user ? (
           <div className="user-dropdown">
-            <button className="user-email">Usuario</button>
+            <button className="user-email">{user.email}</button>
             <div className="dropdown-content">
               <button onClick={handleLogout}>Cerrar sesión</button>
             </div>

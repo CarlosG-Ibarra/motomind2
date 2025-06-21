@@ -7,8 +7,7 @@ const Dashboard = () => {
   const [incl, setIncl] = useState(10);
   const [temperature, setTemperature] = useState(22);
   const [velocity, setVelocity] = useState(50);
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
+
 
   useEffect(() => {
     const interval = setInterval(() => {
