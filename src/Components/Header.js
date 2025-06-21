@@ -1,12 +1,13 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useCart } from './CartContext'; 
 import './Header.css';
 
 const Header = () => {
   const navigate = useNavigate();
+  const { getCartItemCount } = useCart(); 
 
-  // Dummy state to hide dashboard/login/logout links
-  const user = null; // Replace this with real auth logic later if needed
+  const user = null; 
 
   const handleLoginClick = (e) => {
     e.preventDefault();
@@ -19,10 +20,15 @@ const Header = () => {
   };
 
   const handleLogout = async () => {
-    // No real logout logic since Firebase is disabled
     console.log('Logout clicked');
     navigate('/');
   };
+
+  const handleCartClick = () => {
+    navigate('/cart');
+  };
+
+  const cartItemCount = getCartItemCount();
 
   return (
     <header className="header">
@@ -39,6 +45,14 @@ const Header = () => {
         </nav>
       </div>
       <div className="header-right">
+        <button className="cart-icon" onClick={handleCartClick}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V16.5M9 19.5C9.8 19.5 10.5 20.2 10.5 21S9.8 22.5 9 22.5 7.5 21.8 7.5 21 8.2 19.5 9 19.5ZM20 19.5C20.8 19.5 21.5 20.2 21.5 21S20.8 22.5 20 22.5 18.5 21.8 18.5 21 19.2 19.5 20 19.5Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          {cartItemCount > 0 && (
+            <span className="cart-badge">{cartItemCount}</span>
+          )}
+        </button>
         {user ? (
           <div className="user-dropdown">
             <button className="user-email">Usuario</button>

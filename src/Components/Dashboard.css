@@ -22,8 +22,8 @@ h2 {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 450px;  /* Increase the width */
-  height: 450px; /* Increase the height */
+  width: 450px;  
+  height: 450px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -48,7 +48,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   font-size: 1.5em;
-  color: #ff0000; /* Smaller font size for long values */
+  color: #ff0000; 
 }
 
 .location-display .latitude,
@@ -58,8 +58,8 @@ h2 {
 
 .inclination-display {
   position: relative;
-  width: 250px; /* Increase the width */
-  height: 250px; /* Increase the height */
+  width: 250px; 
+  height: 250px; 
   border: 10px solid #ccc;
   border-radius: 50%;
   display: flex;
@@ -89,7 +89,6 @@ canvas {
   max-height: 100%;
 }
 
-/* Hide the percentage text in the velocity gauge */
 #velocity-gauge text {
   display: none;
 }
@@ -97,5 +96,5 @@ canvas {
 .velocity-display {
   font-size: 3em;
   color: #ff0000;
-  margin-top: -20px; /* Adjust the position */
+  margin-top: -20px; 
 }

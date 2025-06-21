@@ -1,25 +1,25 @@
 .contact-page {
   font-family: Arial, sans-serif;
-  position: relative; /* Ensure .info-section is positioned relative to this */
+  position: relative; 
 }
 
 .photo-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 600px; /* Limit the maximum height */
-  overflow: hidden; /* Hide any overflow */
-  position: relative; /* Create a stacking context */
-  z-index: 1; /* Ensure it is behind the .info-section */
+  max-height: 600px;
+  overflow: hidden; 
+  position: relative; 
+  z-index: 1; 
   width: 100%;
 }
 
 .photo-section img {
   padding-top: 200px;
   padding-left:35px;
-  max-width: 100%; /* Ensure the image doesn't exceed its container width */
-  max-height: 100%; /* Ensure the image doesn't exceed its container height */
-  object-fit: contain; /* Maintain aspect ratio while fitting within the container */
+  max-width: 100%; 
+  max-height: 100%; 
+  object-fit: contain;
 }
 
 .info-section {
@@ -27,10 +27,9 @@
   justify-content: space-around;
   padding: 20px;
   position: relative;
-  z-index: 2; /* Ensure .info-section is above the .photo-section */
-  background: #003049; /* Optional: add background for better visibility */
+  z-index: 2; 
+  background: #003049; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   /* Optional: add shadow for better contrast */
 }
 
 .contactos,
@@ -55,17 +54,16 @@
   border: 0;
 }
 
-/* Media Queries for Responsive Design */
 @media (max-width: 768px) {
   .info-section {
-    flex-direction: column; /* Stack sections vertically on smaller screens */
-    align-items: center; /* Center align items */
+    flex-direction: column; 
+    align-items: center;
   }
   
   .contactos,
   .ubicacion {
-    width: 100%; /* Full width on smaller screens */
-    margin-top: 20px; /* Adjust margin */
+    width: 100%; 
+    margin-top: 20px; 
   }
 }
 

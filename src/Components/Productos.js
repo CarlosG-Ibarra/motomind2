@@ -1,12 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Productos.css';
 
 const Productos = () => {
+  const navigate = useNavigate();
+  
   const helmets = [
     {
       id: 1,
       name: 'MotoMind L1',
       price: 3000,
+      path: 'cascol1', 
       description: 'Casco inteligente con protección avanzada y conectividad básica',
       features: [
         'Sensores de temperatura y humedad',
@@ -19,6 +23,7 @@ const Productos = () => {
       id: 2,
       name: 'MotoMind L2',
       price: 4000,
+      path: 'cascol2', 
       description: 'Casco premium con características mejoradas de seguridad y conectividad',
       features: [
         'Pantalla HUD integrada',
@@ -32,6 +37,7 @@ const Productos = () => {
       id: 3,
       name: 'MotoMind Pro',
       price: 5000,
+      path: 'cascopro',
       description: 'El casco más avanzado con tecnología de punta',
       features: [
         'Visión nocturna integrada',
@@ -43,6 +49,10 @@ const Productos = () => {
       ]
     }
   ];
+
+  const handleCustomize = (path) => {
+    navigate(`/${path}`);
+  };
 
   return (
     <div className="productos-container">
@@ -67,9 +77,17 @@ const Productos = () => {
                 </ul>
               </div>
               
+              <div className="helmet-price">
+                <span className="price">${helmet.price.toLocaleString()} MXN</span>
+              </div>
+              
               <div className="helmet-actions">
-                <button className="cart-button">Agregar al carrito</button>
-                <button className="customize-button">Personalizar</button>
+                <button 
+                  className="customize-button"
+                  onClick={() => handleCustomize(helmet.path)}
+                >
+                  Ver y Personalizar
+                </button>
               </div>
             </div>
           </div>

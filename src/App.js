@@ -8,14 +8,21 @@ import './App.css';
 import Contact from './Components/Contact';
 import About from './Components/About';
 import Dashboard from './Components/Dashboard';
-import Wireframe from './Components/Wireframe';
 import Productos from './Components/Productos';
+import CascoL1 from './Components/Cascol1';
+import CascoL2 from './Components/Cascol2';
+import CascoPro from './Components/Cascopro';
+import { CartProvider } from './Components/CartContext';
+import Cart from './Components/Cart';
+
 
 const App = () => {
   return (
-    <Router>
-      <Content />
-    </Router>
+    <CartProvider>
+      <Router>
+        <Content />
+      </Router>
+    </CartProvider>
   );
 };
 
@@ -24,10 +31,8 @@ const Content = () => {
   const isLoginRoute = location.pathname === '/login';
 
   useEffect(() => {
-    // This effect previously handled Firebase logout, but has been cleaned up
     const handleBeforeUnload = (event) => {
-      // Optional: Add confirmation prompt here if needed
-      // event.returnValue = "Are you sure you want to leave?";
+   
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -38,17 +43,22 @@ const Content = () => {
   }, []);
 
   return (
-    <div>
+    <div className="app-container">
       {!isLoginRoute && <Header />}
-      <Routes>
-        <Route path="/wireframe" element={<Wireframe />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/productos" element={<Productos />} />
-      </Routes>
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/productos" element={<Productos />} />
+          <Route path="/cascol1" element={<CascoL1 />} />
+          <Route path="/cascol2" element={<CascoL2 />} />
+          <Route path="/cascopro" element={<CascoPro/>} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </main>
       {!isLoginRoute && <Footer />}
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "./Home.css"; // Import CSS file
-import motomindLogo from "./Assets/motomind_logo2.png"; // Import images and videos
+import "./Home.css"; 
+import motomindLogo from "./Assets/motomind_logo2.png"; 
 import backgroundVideo from "./Assets/backgroundvideo.mp4";
 import carouselImage1 from "./Assets/moto1.jpg";
 import carouselImage2 from "./Assets/moto2.jpg";
@@ -9,7 +9,6 @@ import carouselImage4 from "./Assets/moto4.jpg";
 import carouselImage5 from "./Assets/moto4.jpg";
 
 const Home = () => {
-  // Define an array of images for the carousel
   const images = [
     carouselImage1,
     carouselImage2,
@@ -18,25 +17,21 @@ const Home = () => {
     carouselImage5,
   ];
 
-  // State for the current image index of the carousel
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Function to change to the next image in the carousel
   const nextImage = useCallback(() => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   }, [images.length]);
 
-  // Function to change to the previous image in the carousel
   const prevImage = () => {
     setCurrentImageIndex(
       (prevIndex) => (prevIndex - 1 + images.length) % images.length
     );
   };
 
-  // Effect to change the carousel image automatically every 3 seconds
   useEffect(() => {
     const interval = setInterval(nextImage, 3000);
-    return () => clearInterval(interval); // Clear the interval when the component unmounts
+    return () => clearInterval(interval); 
   }, [nextImage]);
 
   return (
@@ -69,6 +64,11 @@ const Home = () => {
             <h3>MotoMind L2</h3>
             <p>Precio: $4,000</p>
             <p>El MotoMind L2 incluye características mejoradas para una conducción más segura y conectada.</p>
+          </div>
+          <div className="product">
+            <h3>MotoMind Pro</h3>
+            <p>Precio: $5,000</p>
+            <p>El MotoMind Pro incluye características mejoradas para una conducción más segura y conectada.</p>
           </div>
         </div>
       </div>

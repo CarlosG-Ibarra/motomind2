@@ -1,5 +1,5 @@
 import React from "react";
-import "./Contact.css"; // Import CSS for styling
+import "./Contact.css"; 
 import motocall from "./Assets/motocall.jpg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';

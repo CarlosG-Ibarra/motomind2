@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import GaugeChart from 'react-gauge-chart';
-import './Dashboard.css'; // Keep styling
+import './Dashboard.css'; 
 
 const Dashboard = () => {
-  // Simulate data instead of using Firebase
   const [humidity, setHumidity] = useState(45);
   const [incl, setIncl] = useState(10);
   const [temperature, setTemperature] = useState(22);
@@ -12,7 +11,6 @@ const Dashboard = () => {
   const [longitude, setLongitude] = useState(null);
 
   useEffect(() => {
-    // Simulate updating data if desired (optional)
     const interval = setInterval(() => {
       setHumidity((prev) => (prev + 1) % 100);
       setIncl((prev) => (prev + 1) % 360);

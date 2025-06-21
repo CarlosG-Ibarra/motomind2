@@ -12,12 +12,10 @@ const Login = () => {
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  // Skip login and go directly to the app
   const handleSkipLogin = () => {
     navigate("/");
   };
 
-  // Toggle between login and register forms
   const toggleForms = () => {
     setShowLoginForm(!showLoginForm);
     setError("");
@@ -26,7 +24,6 @@ const Login = () => {
     setPasswordError("");
   };
 
-  // Validate password complexity
   const validatePassword = (password) => {
     if (password.length < 6) {
       setPasswordError("Password must be at least 6 characters.");
@@ -35,11 +32,9 @@ const Login = () => {
     return true;
   };
 
-  // Handle login (mock version)
   const handleLogin = async () => {
     if (!validatePassword(password)) return;
 
-    // Mock authentication - just check if fields are filled
     if (email && password) {
       alert("Login successful (mock)!");
       navigate("/");
@@ -48,11 +43,9 @@ const Login = () => {
     }
   };
 
-  // Handle registration (mock version)
   const handleRegister = async () => {
     if (!validatePassword(password)) return;
 
-    // Mock registration - just check if fields are filled
     if (email && password) {
       alert("Registration successful (mock)!");
       navigate("/");
