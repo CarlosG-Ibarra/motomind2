@@ -1,0 +1,110 @@
+.recover-body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: url("./Assets/login-background.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.container-recover {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recover-form {
+  width: 100%;
+  max-width: 500px;
+}
+
+h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.recover-description {
+  color: white;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+input[type="email"] {
+  display: block;
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.recover-button {
+  width: 80%;
+  padding: 10px;
+  background-color: #669BBC;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 0.2s;
+}
+
+.recover-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.success-message {
+  color: #28a745;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+}
+
+.link-button:hover {
+  text-decoration: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: .5;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+}

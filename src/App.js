@@ -14,7 +14,7 @@ import CascoL2 from './Components/Cascol2';
 import CascoPro from './Components/Cascopro';
 import { CartProvider } from './Components/CartContext';
 import Cart from './Components/Cart';
-
+import RecuperarContrasena from './Components/RecuperarContrasena';
 
 const App = () => {
   return (
@@ -28,11 +28,10 @@ const App = () => {
 
 const Content = () => {
   const location = useLocation();
-  const isLoginRoute = location.pathname === '/login';
+  const isAuthRoute = location.pathname === '/login' || location.pathname === '/recuperar';
 
   useEffect(() => {
     const handleBeforeUnload = (event) => {
-   
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -44,7 +43,7 @@ const Content = () => {
 
   return (
     <div className="app-container">
-      {!isLoginRoute && <Header />}
+      {!isAuthRoute && <Header />}
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -55,13 +54,15 @@ const Content = () => {
           <Route path="/productos" element={<Productos />} />
           <Route path="/cascol1" element={<CascoL1 />} />
           <Route path="/cascol2" element={<CascoL2 />} />
-          <Route path="/cascopro" element={<CascoPro/>} />
+          <Route path="/cascopro" element={<CascoPro />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/recuperar" element={<RecuperarContrasena />} />
         </Routes>
       </main>
-      {!isLoginRoute && <Footer />}
+      {!isAuthRoute && <Footer />}
     </div>
   );
 };
+
 
 export default App;

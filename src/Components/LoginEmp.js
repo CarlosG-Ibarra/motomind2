@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -123,19 +123,17 @@ const Login = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      await setDoc(doc(db, "users", user.uid), {
+      await setDoc(doc(db, "usuarios", user.uid), {
         email: email,
-        rol: "usuario",
+        rol: "empleado",
       });
 
-      alert("¡Registro exitoso como usuario!");
+      alert("¡Registro exitoso como empleado!");
       navigate("/");
     } catch (error) {
-      setError(
-        error.code === "auth/weak-password"
-          ? "La contraseña debe tener al menos 6 caracteres."
-          : "Error en el registro. Por favor, inténtalo de nuevo."
-      );
+      setError(error.code === "auth/weak-password"
+        ? "La contraseña debe tener al menos 6 caracteres."
+        : "Error en el registro. Por favor, inténtalo de nuevo.");
     }
   };
 
@@ -238,9 +236,6 @@ const Login = () => {
                     <RiGoogleFill className="button-icon" /> Iniciar sesión con Google
                   </button>
                 </div>
-                <p className="forgot-password-link">
-                  <Link to="/recuperar">¿Olvidaste tu contraseña?</Link>
-                </p>
                 <p>
                   ¿No tienes una cuenta?{" "}
                   <button className="link-button" onClick={toggleForms}>
